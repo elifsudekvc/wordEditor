@@ -1,0 +1,47 @@
+https://sautinsoft.com/products/html-to-rtf/help/net/getting-started/agreement.php
+License Agreement
+
+HTML to RTF .Net and its editions. Copyright (C) SautinSoftTM.
+
+License
+SautinSoft grants you a non-exclusive license to install and use a copy of the software. You shall not reverse engineer, disassemble or decompile all or part of the Program. The sale and sub-licensing of the software are forbidden.
+
+Evaluation License
+You may test the evaluation version software as long as you wish. The evaluation version of the software inserts words “trial” in random places. HTML to RTF .Net evaluation version can't be used in commercial applications.
+
+Commercial Licenses
+Royalty free runtimes
+All developer products have royalty free runtimes. This means that you may freely distribute the component with your desktop applications.
+
+All of the licenses allow you to deploy Internet applications using our component. There are no limits of number development and testing websites. But, please note that “Individual License” allows to deploy the component only with one website.
+
+Free updates
+First of all, your license will never expire, you may use the product as long as you want. After purchasing the license, you will be able to get the all updates for free during a one year. To continue receive all new updates after the first year, we recommend you to renew your license.
+
+The renewal price is:
+
+Before your updates plan has expired: 75% discount from the software license price.
+After your update plan has expired: 40% discount from the software license price.
+Individual Developer
+This license allows to an individual person to develop applications using our component. This license is valid to redistribute the component with 1 (one) Desktop or Console app and valid to deploy the component with 1 (one) website. This type of license is not valid for Cloud (AWS, Azure, Kubernetes etc).
+
+Small Company
+This license allows to a company (up to 10 developers that are working on any project that uses the SautinSoft component) or a group of developers (up to 10) to develop applications using our component. This license is valid to redistribute the component with unlimited number of desktop and Web-applications and deploy the component with unlimited number of websites. This type of license is valid for Cloud (AWS, Azure, Kubernetes etc).
+
+Large Company
+This license allows to a large company (unlimited number of developers that are working on any project that uses the SautinSoft component) or a group of unlimited developers from to develop applications using our component. This license is valid to redistribute the component with unlimited number of desktop and Web-applications and deploy the component with unlimited number of websites. This type of license is valid for Cloud (AWS, Azure, Kubernetes etc).
+
+Warranty disclaimer
+THE SOFTWARE IS SUPPLIED "AS IS" WITHOUT WARRANTY OF ANY KIND. SAUTINSOFT, ITS LICENSORS AND THEIR EMPLOYEES: (1) DISCLAIM ANY WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OR MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE OR NON-INFRINGEMENT, (2) DO NOT ASSUME ANY LEGAL LIABILITY OR RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF THE SOFTWARE, (3) DO NOT REPRESENT THAT USE OF THE SOFTWARE WOULD NOT INFRINGE PRIVATELY OWNED RIGHTS, (4) DO NOT WARRANT THAT THE SOFTWARE WILL FUNCTION UNINTERRUPTED, THAT IT IS ERROR-FREE OR THAT ANY ERRORS WILL BE CORRECTED.
+
+Limitation of liability
+IN NO EVENT WILL LICENSEE, SAUTINSOFT OR ITS LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL OR PUNITIVE DAMAGES OF ANY KIND OR NATURE, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS OR LOSS OF DATA, FOR ANY REASON WHATSOEVER, WHETHER SUCH LIABILITY IS ASSERTED ON THE BASIS OF CONTRACT, TORT (INCLUDING NEGLIGENCE OR STRICT LIABILITY), OR OTHERWISE, EVEN IF SAUTINSOFT HAS BEEN WARNED OF THE POSSIBILIITY OF SUCH LOSS OR DAMAGES. IN NO EVENT SHALL SAUTINSOFT 'S LIABILITY FOR DAMAGES ARISING FROM OR IN CONNECTION WITH THIS AGREEMENT EXCEED THE AMOUNT PAID BY YOU FOR THE SOFTWARE.
+
+Term and termination
+The license granted to the Licensee under this Agreement will continue perpetually unless terminated by SautinSoft in accordance with this Agreement. If the Licensee breaches any term of this Agreement, and fails to cure such breach within thirty (30) days of the date of written notice, this Agreement shall immediately terminate. Upon such termination, the Licensee shall immediately cease using the Software, return to SautinSoft, or destroy, all copies of the Software, and provide SautinSoft with written certification of your compliance with the foregoing. Termination shall not relieve the Licensee from its obligations arising prior to such termination.
+
+Export controls
+The Licensee shall observe all applicable laws and regulations (if any) with respect to the export, re-export, diversion or transfer of the Software, related technical data and direct products thereof, including, without limitation, the International Traffic in Arms Regulations (ITAR) and the Export Administration Regulations.
+
+Applicable law - jurisdiction
+This license contract is governed exclusively by the laws of the State of New York.

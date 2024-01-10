@@ -1,0 +1,546 @@
+﻿@{ 
+    Layout = null;  
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous" />
+    <title>Text Editor</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #AAD7D9;
+        }
+
+        .container {
+            background-color: #fff;
+            width: 110vmin;
+            padding: 50px 30px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            border-radius: 10px;
+            box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+        }
+
+        .btn {
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+            background-color: #AAD7D9;
+            margin: 5px;
+        }
+
+        .download {
+            display: flex;
+        }
+
+        .filename-input {
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+
+        button {
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            border-radius: 3px;
+            border: none;
+            background-color: #fff;
+            outline: none;
+            color: #020929;
+            cursor: pointer;
+        }
+
+        select {
+            padding: 7px;
+            border: 1px solid #020929;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .options label,
+        .options select {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input[type="color"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            width: 40px;
+            height: 28px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border-radius: 15px;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px #020929;
+        }
+
+        input[type="color"]::-moz-color-swatch {
+            border-radius: 15px;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px #020929;
+        }
+
+        #text-input {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            height: 75vh;
+            overflow: auto;
+        }
+
+        .active {
+            background-color: #e0e9ff;
+        }
+        #fileLabel {
+            cursor: pointer;
+            margin-left:6px;
+            margin-right:10px;
+        }
+
+        #file-input {
+            display: none;
+        }
+        .convert {
+            background-color: #AAD7D9;
+            border:none;
+            padding:5px;
+            border-radius:10px;
+        }
+        .filebutton{
+            display:flex;
+        }
+        .buttons{
+            display:flex;
+        }
+        #addImageButton{
+            margin-top:4px;
+            margin-right:10px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="download">
+            <div class="droprown">
+                <button class="btn dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    İndir
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button id="new-btn" class="dropdown-item">yeni sayfa</button>
+                    </li>
+                    <li>
+                        <button id="txt-btn" class="dropdown-item">
+                            TXT formatında kaydet
+                        </button>
+                    </li>
+                    <li>
+                        <button id="word-btn" onclick="html2word('text-input')" class="dropdown-item">
+                            Word formatında kaydet
+                        </button>
+                    </li>
+                    <li>
+                        <button id="pdf-btn" class="dropdown-item">
+                            PDF formatında kaydet
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown-menu"></div>
+            <input class="filename-input" type="text" value="başlık" />
+        </div>
+        <div class="options">
+            <!--bold-->
+            <button id="bold" class="option-button format">
+                <i class="fa-solid fa-bold"></i>
+            </button>
+            <button id="italic" class="option-button format">
+                <i class="fa-solid fa-italic"></i>
+            </button>
+
+            <button id="underline" class="option-button format">
+                <i class="fa-solid fa-underline"></i>
+            </button>
+            <button id="strikethrough" class="option-button format">
+                <i class="fa-solid fa-strikethrough"></i>
+            </button>
+            <!--sayılı sayısız listeleme-->
+            <button id="insertOrderedList" class="option-button">
+                <div class="fa-solid fa-list-ol"></div>
+            </button>
+            <button id="insertUnorderedList" class="option-button">
+                <i class="fa-solid fa-list"></i>
+            </button>
+            <!--ctrl z, ctrl y-->
+            <button id="undo" class="option-button">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            <button id="redo" class="option-button">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <!--Link ekleme-->
+            <button id="createLink" class="adv-option-button">
+                <i class="fa fa-link"></i>
+            </button>
+            <!--ortalama hizalama-->
+            <button id="justifyLeft" class="option-button align">
+                <i class="fa-solid fa-align-left"></i>
+            </button>
+            <button id="justifyCenter" class="option-button align">
+                <i class="fa-solid fa-align-center"></i>
+            </button>
+            <button id="justifyRight" class="option-button align">
+                <i class="fa-solid fa-align-right"></i>
+            </button>
+            <button id="justifyFull" class="option-button align">
+                <i class="fa-solid fa-align-justify"></i>
+            </button>
+            <!--aralık bırakma-->
+            <button id="indent" class="option-button spacing">
+                <i class="fa-solid fa-indent"></i>
+            </button>
+            <button id="outdent" class="option-button spacing">
+                <i class="fa-solid fa-outdent"></i>
+            </button>
+            <!--font name ve font size ayarlama-->
+            <select id="fontName" class="adv-option-button"></select>
+            <select id="fontSize" class="adv-option-button"></select>
+            <!--color-->
+            <div class="input-wrapper">
+                <input type="color" id="foreColor" class="adv-option-button" />
+                <label for="foreColor">Yazı Rengi</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="color" id="backColor" class="adv-option-button" />
+                <label for="backColor">Rengi Vurgula</label>
+            </div>
+
+            <div class="buttons"
+            <!-- Resim Ekle Butonu -->
+            <label for="imageInput" id="addImageButton" class="option-button">
+                <i class="fa-solid fa-image"></i>
+                <span>Resim Seç</span>
+            </label>
+
+            <!-- Resim Seçim Inputu (Görünmez) -->
+            <input type="file"
+            class="option-button"
+            id="imageInput"
+            style="display: none" />
+
+            @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadForm" }))
+            {
+                <label for="file-input" id="fileLabel">
+                <i class="fa-regular fa-file-word"></i>
+                <span id="fileLabelText">Dosya Seç</span>
+                </label>
+                <input type="file" name="file" id="file-input" class="selectFile" onchange="updateFileLabel()" />
+                <input type="submit" value="Dosyayı Aç" class="convert" />
+            }
+
+            </div>
+        </div>
+        <div id="text-input" contenteditable="true">
+            <div>
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <p>@ViewBag.ErrorMessage</p>
+                }
+                else
+                {
+                    <div>@Html.Raw(ViewBag.HtmlContent)</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2doc@1.0.0/src/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let optionsButtons = document.querySelectorAll(".option-button");
+        let advancedOptionButton = document.querySelectorAll(".adv-option-button");
+        let fontName = document.getElementById("fontName");
+        let fontSize = document.getElementById("fontSize");
+        let writingArea = document.getElementById("text-input");
+        let linkButton = document.getElementById("createLink");
+        let alignButtons = document.querySelectorAll(".align");
+        let spacingButtons = document.querySelectorAll(".spacing");
+        let formatButtons = document.querySelectorAll(".format");
+        let txtBtn = document.querySelector("#txt-btn");
+        let wordBtn = document.querySelector("#word-btn");
+        let pdfBtn = document.querySelector("#pdf-btn");
+        let newBtn = document.querySelector("#new-btn");
+        let fileName = document.querySelector(".filename-input");
+
+        let fontList = [
+            "Arial",
+            "Verdana",
+            "Times New Roman",
+            "Garamond",
+            "Georgia",
+            "Courier New",
+            "Cursive",
+            "Helvetica",
+            "Lucida Console",
+            "Palatino",
+            "Tahoma",
+            "Trebuchet MS",
+            "Impact",
+            "Comic Sans MS",
+            "Monospace",
+        ];
+
+
+        const intializer = () => {
+            highlighter(alignButtons, true);
+            highlighter(spacingButtons, true);
+            highlighter(formatButtons, false);
+
+            fontList.map((value) => {
+                let option = document.createElement("option");
+                option.value = value;
+                option.innerHTML = value;
+                fontName.appendChild(option);
+            });
+
+            for (let i = 1; i <= 7; i++) {
+                let option = document.createElement("option");
+                option.value = i;
+                option.innerHTML = i;
+                fontSize.appendChild(option);
+            }
+            fontSize.value = 1;
+        };
+
+        const modifyText = (command, defaultUi, value) => {
+            document.execCommand(command, defaultUi, value);
+        };
+
+        optionsButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                modifyText(button.id, false, null);
+            });
+        });
+
+        advancedOptionButton.forEach((button) => {
+            button.addEventListener("change", () => {
+                modifyText(button.id, false, button.value);
+            });
+        });
+
+        linkButton.addEventListener("click", () => {
+            let userLink = prompt("Enter a URL?");
+            if (/http/i.test(userLink)) {
+                modifyText(linkButton.id, false, userLink);
+            } else {
+                userLink = "http://" + userLink;
+                modifyText(linkButton.id, false, userLink);
+            }
+        });
+
+        const highlighter = (className, removeThis) => {
+            className.forEach((button) => {
+                button.addEventListener("click", () => {
+                    if (removeThis) {
+                        let alreadyActive = false;
+                        if (button.classList.contains("active")) {
+                            alreadyActive = true;
+                        }
+                        highlighterRemover(className);
+                        if (!alreadyActive) {
+                            button.classList.add("active");
+                        }
+                    } else {
+                        button.classList.toggle("active");
+                    }
+                });
+            });
+        };
+
+        const highlighterRemover = (className) => {
+            className.forEach((button) => {
+                button.classList.remove("active");
+            });
+        };
+        const addImageButton = document.getElementById("addImageButton");
+        const imageInput = document.getElementById("imageInput");
+
+        imageInput.addEventListener("change", handleImageSelection);
+
+        function handleImageSelection(event) {
+            const selectedImage = event.target.files[0];
+
+            if (selectedImage) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imageDataUrl = e.target.result;
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageDataUrl;
+
+                    imgElement.style.width = '50%';
+                    imgElement.style.height = 'auto';
+
+                    writingArea.appendChild(imgElement);
+                };
+
+                reader.readAsDataURL(selectedImage);
+            }
+        }
+        function updateFileLabel() {
+            var fileInput = document.getElementById('file-input');
+            var fileLabel = document.getElementById('fileLabel');
+            var fileLabelText = document.getElementById('fileLabelText');
+
+            if (fileInput.files.length > 0) {
+                fileLabelText.innerText = fileInput.files[0].name;
+            } else {
+                fileLabelText.innerText = 'Dosya Seç';
+            }
+        }
+
+        newBtn.addEventListener("click", () => {
+            writingArea.innerHTML = "";
+        });
+
+        txtBtn.addEventListener("click", () => {
+            const a = document.createElement('a');
+            const blob = new Blob([writingArea.innerText]);
+            const dataUrl = URL.createObjectURL(blob);
+            a.href = dataUrl;
+            a.download = fileName.value + ".txt";
+            a.click();
+        });
+
+        pdfBtn.addEventListener("click", () => {
+            html2pdf().from(writingArea).save(fileName.value);
+        });
+
+        function html2word(element, filename = fileName.value) {
+            var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+            var postHtml = "</body></html>";
+            var html = preHtml + document.getElementById(element).innerHTML + postHtml;
+
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+
+            var url = URL.createObjectURL(blob);
+
+            filename = filename ? filename + '.doc' : 'document.doc';
+
+            var downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if (navigator.msSaveOrOpenBlob) {
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                downloadLink.href = url;
+                downloadLink.download = filename;
+
+                downloadLink.setAttribute("target", "_blank");
+                downloadLink.setAttribute("rel", "noopener noreferrer");
+
+                downloadLink.click();
+            }
+
+            document.body.removeChild(downloadLink);
+        }
+        function getSelectedTextRange() {
+            let textInput = document.getElementById("text-input");
+
+            if (window.getSelection) {
+                return window.getSelection();
+            }
+
+            return null;
+        }
+        let currentSelection;
+
+        document.getElementById("foreColor").addEventListener("change", function () {
+            let fontColor = this.value;
+            currentSelection = saveSelection();
+
+            if (currentSelection) {
+                let span = document.createElement("span");
+                span.style.color = fontColor;
+
+                currentSelection.surroundContents(span);
+            }
+        });
+
+        document.getElementById("fontSize").addEventListener("change", function () {
+            let fontSize = (this.value) * 10;
+            document.execCommand('fontSize', false, fontSize);
+            let selection = getSelectedTextRange();
+
+            if (selection && selection.rangeCount > 0) {
+                let span = document.createElement("span");
+                span.style.fontSize = fontSize + "px";
+
+                let range = selection.getRangeAt(0);
+                range.surroundContents(span);
+            }
+        });
+
+        window.onload = intializer();
+
+        window.addEventListener('beforeunload', function (e) {
+            const textInputIsEmpty = isTextInputEmpty();
+            const unsavedChanges = checkUnsavedChanges();
+
+            if (!textInputIsEmpty && unsavedChanges) {
+                const confirmationMessage = 'You have unsaved changes. Are you sure you want to leave?';
+                (e || window.event).returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        });
+
+        function isTextInputEmpty() {
+            const textInputContent = document.getElementById('text-input').innerText.trim();
+            return textInputContent === '';
+        }
+
+        function checkUnsavedChanges() {
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+
+
